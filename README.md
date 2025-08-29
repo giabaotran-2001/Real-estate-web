@@ -1,12 +1,86 @@
-# Kênh Tài Liệu
+# Real Estate Web
 
-https://drive.google.com/drive/u/1/folders/1eHj2mr5eIsKbpJ5ZpKZVgw5re3WNmOrB
+This repository contains a full-stack real-estate web project (React front-end + Node.js/Express back-end). It combines a client application located in `front-end/` and an API server in `back-end/` to support property listings, user authentication, and related services.
 
-# Vui lòng đọc trước khi test
-# Cho việc test trên môi trường development (localhost)
-1. Sửa biến REACT_APP_API_URL từ port 3000 thành 5000 trong .env front end
-2. Sửa biến APP_PORT từ port 3000 thành 5000 trong .env back end
-3. Sửa biến SERVER_URL từ port 3000 thành 5000 trong .env back end 
+## Quick overview
 
-Lý do: Do nếu để đúng như mặc định template thì port của localhost back end và front end sẽ đều là 3000, cái nào chạy sau sẽ bị đổi port nên rất khó kiểm soát. Nên trong quá trình lập trình phát triển, nhóm 3 đã đổi port server thành 5000 và cũng như cài đặt id app của gg fb hoạt động trên miền localhost 3000 của bên client react. Nhưng khi push lên gitlab để tránh conflict với các nhóm khác đã sửa lại port của server về lại 3000 như đúng template gốc. Do đó để test thì cần đổi theo hướng dẫn để tránh việc các api cũng như các id app gg fb không hoạt động trên miền port đã thay đổi khi back end và front end đều bị trùng.
+- Front-end: React (Create React App)
+- Back-end: Node.js, Express, Mongoose
+- Purpose: Demo / internal real-estate listing platform used for development and testing
 
+## Quickstart
+
+Prerequisites
+
+- Node.js (16+) and npm installed
+- MongoDB accessible (local or remote)
+
+Install and run the back-end
+
+```powershell
+cd back-end
+npm install
+# development (uses nodemon)
+npm run dev
+```
+
+Install and run the front-end
+
+```powershell
+cd front-end
+npm install
+npm start
+```
+
+Open the client at [http://localhost:3000](http://localhost:3000) by default. The API server (development) commonly runs on port 5000 in this project; see the Environment section below.
+
+## Environment / configuration
+
+Create appropriate `.env` files for each side (there are example values in repo or configs). Important variables used in development:
+
+- Front-end: `REACT_APP_API_URL` — the base URL for the API the client talks to.
+- Back-end: `APP_PORT`, `SERVER_URL` — server listening port and base URL.
+
+Important development note
+
+> [!warning]
+> Ports in the original template default to 3000 for both client and server. To avoid port collisions during local development the team has used port 5000 for the back-end. If you run both client and server on the same machine, ensure `REACT_APP_API_URL` (front-end) points to your back-end port, and adjust `APP_PORT` / `SERVER_URL` (back-end) accordingly.
+
+Example: when running front-end on `localhost:3000` and back-end on `localhost:5000`, set `REACT_APP_API_URL=http://localhost:5000` in the front-end `.env`.
+
+## Project structure (high level)
+
+- `back-end/` — Express API, loaders, middlewares, routes, Mongoose models
+
+- `src/app.js` — application entry for development
+- `front-end/` — React client (Create React App)
+
+## Useful scripts
+
+Back-end (from `back-end/`)
+
+- `npm run dev` — start in development with `nodemon` (recommended for dev)
+- `npm run lint` — run ESLint checks
+- `npm run prettier` — format code with Prettier
+
+Front-end (from `front-end/`)
+
+- `npm start` — run the development React server
+- `npm run build` — create production build
+
+## Notes for contributors and testers
+
+- The repository contains assets and images in `front-end/public` and `front-end/src/assests/` used by the UI.
+- The back-end includes Swagger and other loaders; when the server is running, API docs may be available depending on the environment and loader configuration.
+
+## Troubleshooting
+
+- If the client shows CORS or network errors, verify `REACT_APP_API_URL` points to the running back-end and that the back-end `APP_PORT` is correct.
+- If an API or auth provider (e.g., Google/Facebook OAuth) is failing on localhost, check the configured client IDs and allowed redirect/origins for `localhost:3000` or whatever port your client uses.
+
+## Where to look next
+
+- Back-end: `back-end/src` for routes, controllers, and loaders
+- Front-end: `front-end/src` for UI components and pages
+
+---
