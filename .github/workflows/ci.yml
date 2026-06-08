@@ -10,3 +10,9 @@ jobs:
     steps:
       - name: Say hello
         run: echo "Hello from GitHub Actions!"
+          
+      - name: Current datetime
+        run: 'echo "Current datetime: $(TZ=Asia/Ho_Chi_Minh date)"'
+
+      - name: Current directory
+        run: 'echo "Current directory: $(pwd)"'
