@@ -10,15 +10,13 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      
-      - name: List all files
-        run: ls -la
-      
-      - name: Say hello
-        run: echo "Hello from GitHub Actions!"
-          
-      - name: Current datetime
-        run: 'echo "Current datetime: $(TZ=Asia/Ho_Chi_Minh date)"'
 
-      - name: Current directory
-        run: 'echo "Current directory: $(pwd)"'
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Install dependencies
+        run: npm ci
+    
+    
